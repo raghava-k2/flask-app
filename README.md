@@ -2,9 +2,9 @@
 
 In this app we have used the Flask library which allows us to
 write micro web apps.And apart from these we also using two more
-libraries
+libraries.
 - [MusicBrainz Link](https://www.programmableweb.com/api/musicbrainz).
-- [Google Custom Search API Link](https://www.programmableweb.com/api/google-custom-search/libraries).
+- [Bit.ly API Link](https://www.programmableweb.com/api/bitly/libraries).
 
 ## Installation
 
@@ -15,7 +15,7 @@ libraries
 - Install the two libraries that we are using using pip command.
    - [Flask](https://pypi.org/project/Flask/).
    - [MusicBrainz](https://python-musicbrainzngs.readthedocs.io/en/latest/installation/).
-   - [Google Custom Search API](https://github.com/googleapis/google-api-python-client).
+   - [Bit.ly API](https://github.com/bitly/bitly-api-python).
 - Now open the terminal and run the 'musicapi.py' file like 'py musicapi.py'.
 - If the above step got success then you must see a link in the terminal on which port it runs.
 - Open any browser select the link which is showed in the terminal and past it in the browser URL section and press enter.
@@ -30,4 +30,9 @@ We have two Rest Endpoints
   - Replace the host name and port in case you have changed.
   - replace the path parameters '/music/&lt;string:artist&gt;/&lt;string:album&gt;/&lt;int:limit&gt;'.
 - The second one will provide the tiny url of the URL that we need/pass to the server.
-  - [Click her to run ](http://127.0.0.1:5000/music/linkinpark/meteora/100).
+  - [Click her to run ](http://127.0.0.1:5000/tiny/).
+  - The request type is POST.
+  - And the input for this end point is of type JSON.
+    - Example {
+                 "long_url": "http://127.0.0.1:5000/tiny/"
+              } 
