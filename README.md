@@ -15,7 +15,7 @@ libraries.
 - Install the two libraries that we are using using pip command.
    - [Flask](https://pypi.org/project/Flask/).
    - [MusicBrainz](https://python-musicbrainzngs.readthedocs.io/en/latest/installation/).
-   - [Bit.ly API](https://github.com/bitly/bitly-api-python).
+   - [Bit.ly API](https://github.com/bitly/bitly-api-python) or 'pip install git+git://github.com/jimmy927/bitly-api-python'.
 - Now open the terminal and run the 'musicapi.py' file like 'py musicapi.py'.
 - If the above step got success then you must see a link in the terminal on which port it runs.
 - Open any browser select the link which is showed in the terminal and past it in the browser URL section and press enter.
