@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <span>Find Nearby Hotels</span>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <form>
+        <div class="input-group">
+          <input type="text" class="form-control" id="search" aria-describedby="search" ngx-google-places-autocomplete
+            #places="ngx-places" (onAddressChange)="onChange($event)" placeholder="Search">
+          <div class="input-group-append" id="button-addon4">
+            <button class="btn btn-outline-secondary" type="button">
+                <fa-icon [icon]="faSearch"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
