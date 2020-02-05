@@ -2,10 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
 
-##Required software
+## Required software
+
 Node --version > 11.x
 
-##Installation Steps
+## Installation Steps
+
 1)Download and install above Node version
 2)Go to the static directory and run below command.
   `npm install`
