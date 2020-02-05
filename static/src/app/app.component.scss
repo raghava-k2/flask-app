@@ -1,0 +1,20 @@
+ng-sidebar-container {
+  height: 100vh;
+}
+a.r-link {
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.card {
+  margin-top: 1em;
+  width: 20em;
+}
+.card {
+  & .list-group {
+    color: #6c757d;
+  }
+  & .card-title {
+    color: black;
+  }
+}

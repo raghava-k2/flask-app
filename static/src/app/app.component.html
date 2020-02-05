@@ -1,20 +1,87 @@
-<div class="container">
-  <div class="row">
-    <span>Find Nearby Hotels</span>
-  </div>
-  <div class="row">
-    <div class="col-sm">
-      <form>
-        <div class="input-group">
-          <input type="text" class="form-control" id="search" aria-describedby="search" ngx-google-places-autocomplete
-            #places="ngx-places" (onAddressChange)="onChange($event)" placeholder="Search">
-          <div class="input-group-append" id="button-addon4">
-            <button class="btn btn-outline-secondary" type="button">
+<ng-sidebar-container>
+  <ng-sidebar [(opened)]="isSideNavOpened" mode="push" class="r-sidebar" closeOnClickBackdrop="true"
+    closeOnClickOutside="true" showBackdrop="true">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg">
+          <h5>Check Weather Forecast</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="input-group">
+            <input type="text" class="form-control" [ngClass]="{'is-invalid':alert.show}" id="search"
+              aria-describedby="search" placeholder="Search" (keyup.enter)="searchWeather($event.currentTarget.value)"
+              #weather>
+            <div class="input-group-append" id="button-addon4">
+              <button class="btn btn-secondary r-button" type="button" (click)="searchWeather(weather.value)">
                 <fa-icon [icon]="faSearch"></fa-icon>
-            </button>
+              </button>
+            </div>
+            <div class="invalid-feedback" *ngIf="alert.show">
+              {{alert.message}}
+            </div>
           </div>
         </div>
-      </form>
+      </div>
+      <div class="row" *ngIf="showWeatherDetails">
+        <div class="col-sm">
+          <div class="card">
+            <img class="card-img-top" [src]="weatherDetails.current.condition.icon" alt="Weather Image">
+            <div class="card-body">
+              <h5 class="card-title">{{weatherDetails.location.name}}-{{weatherDetails.location.country}}</h5>
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span>Temperature</span>
+                  <span class="badge badge-primary badge-pill">{{weatherDetails.current.temp_c}}C /
+                    {{weatherDetails.current.temp_f}}F
+                  </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Wind
+                  <span class="badge badge-primary badge-pill">{{weatherDetails.current.wind_mph}}mph /
+                    {{weatherDetails.current.wind_kph}}kph</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Pressure
+                  <span class="badge badge-primary badge-pill">{{weatherDetails.current.pressure_mb}}mb /
+                    {{weatherDetails.current.pressure_in}}in</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-sidebar>
+  <div ng-sidebar-content>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg">
+          <h2>Find Nearby Hotels</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <form>
+            <div class="input-group">
+              <input type="text" class="form-control" id="search" aria-describedby="search"
+                ngx-google-places-autocomplete #places="ngx-places" (onAddressChange)="onChange($event)"
+                placeholder="Search">
+              <div class="input-group-append" id="button-addon4">
+                <button class="btn btn-secondary r-button" type="button">
+                  <fa-icon [icon]="faSearch"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <a class="r-link" (click)="isSideNavOpened=!isSideNavOpened">Check Weather Forecast</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</ng-sidebar-container>

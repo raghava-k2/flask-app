@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.r-sidebar > aside {
+  background-color: #1b1c1d;
+  color: white;
+}
+.input-group-append > .btn.r-button,.input-group-append .btn.r-button {
+    z-index: 0;
+}
