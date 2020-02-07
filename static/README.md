@@ -2,6 +2,20 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
 
+## Required software
+
+Node --version > 11.x
+
+## Installation Steps
+
+1)Download and install above Node version.
+
+2)Go to the static directory and run `npm install`.
+  
+3)The above step will install all the required node modules into your project directory.
+
+4)To run the application in dev mode check development Server steps.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
