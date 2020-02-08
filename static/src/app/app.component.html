@@ -47,6 +47,14 @@
                   <span class="badge badge-primary badge-pill">{{weatherDetails.current.pressure_mb}}mb /
                     {{weatherDetails.current.pressure_in}}in</span>
                 </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Population
+                  <span class="badge badge-primary badge-pill">{{getCountryDetailsByName('population')}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Currency Type
+                    <span class="badge badge-primary badge-pill">{{getCountryDetailsByName('currency')}}</span>
+                  </li>
               </ul>
             </div>
           </div>

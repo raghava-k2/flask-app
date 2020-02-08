@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { WeatherService } from './weather.service'
+import { XMLUtil } from 'src/util/XMLUtil';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent {
   isSideNavOpened = false;
   showWeatherDetails = false;
   weatherDetails: any;
+  countryDetails: any;
   alert: any = { show: false };
 
   @ViewChild('places', { static: true }) places: GooglePlaceDirective;
@@ -28,10 +30,24 @@ export class AppComponent {
       this.showWeatherDetails = false;
       this.alert = { show: true, message: 'Please provide valid Name', type: 'danger' };
     });
+    this.getCountryDetails(name);
   }
 
-  public close(event: any) {
-    console.log(event);
+  public getCountryDetails(countryName: string) {
+    this.weatherService.getCountryDetails(countryName).subscribe((response: any) => {
+      const xml = XMLUtil.stringToXML(response);
+      this.countryDetails = XMLUtil.xmlToJson(xml);
+    }, (error: any) => {
+      console.error('error : ', error);
+    })
+  }
+
+  public getCountryDetailsByName(key: string) {
+    const country: any = this.countryDetails ? this.countryDetails['SOAP-ENV:Envelope']['SOAP-ENV:Body']['ns2:getCountryResponse']['ns2:country'] : null;
+    if (country) {
+      return country[`ns2:${key}`]['#text'];
+    }
+    return 'NA';
   }
 
   public onChange(address: any) {

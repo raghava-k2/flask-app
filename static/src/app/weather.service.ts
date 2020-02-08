@@ -17,4 +17,22 @@ export class WeatherService {
       }
     });
   }
+
+  getCountryDetails(countryName: string) {
+    const xml = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                     xmlns:gs="http://spring.io/guides/gs-producing-web-service">
+          <soapenv:Header/>
+            <soapenv:Body>
+              <gs:getCountryRequest>
+                <gs:name>${countryName}</gs:name>
+              </gs:getCountryRequest>
+            </soapenv:Body>
+          </soapenv:Envelope>`;
+    return this.http.request('POST', `/ws`, {
+      body: xml,
+      headers: { 'Content-Type': 'text/xml' },
+      responseType: 'text'
+    })
+  }
+
 }
