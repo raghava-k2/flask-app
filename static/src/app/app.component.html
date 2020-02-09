@@ -52,9 +52,9 @@
                   <span class="badge badge-primary badge-pill">{{getCountryDetailsByName('population')}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Currency Type
-                    <span class="badge badge-primary badge-pill">{{getCountryDetailsByName('currency')}}</span>
-                  </li>
+                  Currency Type
+                  <span class="badge badge-primary badge-pill">{{getCountryDetailsByName('currency')}}</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -73,9 +73,7 @@
         <div class="col-sm">
           <form>
             <div class="input-group">
-              <input type="text" class="form-control" id="search" aria-describedby="search"
-                ngx-google-places-autocomplete #places="ngx-places" (onAddressChange)="onChange($event)"
-                placeholder="Search">
+              <input type="text" class="form-control" id="search" aria-describedby="search"  placeholder="Search">
               <div class="input-group-append" id="button-addon4">
                 <button class="btn btn-secondary r-button" type="button">
                   <fa-icon [icon]="faSearch"></fa-icon>
@@ -88,6 +86,11 @@
       <div class="row">
         <div class="col-sm">
           <a class="r-link" (click)="isSideNavOpened=!isSideNavOpened">Check Weather Forecast</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div id="map"></div>
         </div>
       </div>
     </div>

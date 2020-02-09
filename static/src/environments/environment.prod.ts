@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  GOOGLE_API_KEY: 'AIzaSyApPhFSptjiNpLnnkA98hgqWIbmd9TGzg0',
+  MAP_KEY: 'pk.6eb7dda82a2e89b403a71c275d0e9c01',
   WEATHER_API_KEY: 'd59509dce074473fbd061434202701'
 };
