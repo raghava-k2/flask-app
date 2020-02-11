@@ -3,6 +3,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { WeatherService } from './weather.service'
 import { XMLUtil } from 'src/util/XMLUtil';
 import { environment } from '../environments/environment';
+import { debounceTime } from 'rxjs/operators';
 declare const L: any;
 
 @Component({
@@ -16,28 +17,26 @@ export class AppComponent implements OnInit {
   showWeatherDetails = false;
   weatherDetails: any;
   countryDetails: any;
+  locations: Array<any>;
+  locationSearchValue: string;
+  comment: string;
   alert: any = { show: false };
-  map:any;
+  map: any;
 
-  constructor(private weatherService: WeatherService) {
-    console.log('locationQ:', L);
-  }
+  constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
     const streets = L.tileLayer.Unwired({ key: environment.MAP_KEY, scheme: "streets" });
     this.map = L.map('map', {
-      center: [39.73, -104.99], 
+      center: [39.73, -104.99],
       zoom: 14,
-      layers: [streets] 
+      layers: [streets]
     });
+    L.control.geocoder(environment.MAP_KEY).addTo(this.map);
     L.control.scale().addTo(this.map);
     L.control.layers({
       "Streets": streets
     }).addTo(this.map);
-    L.popup()
-    .setLatLng([39.73, -104.99])
-    .setContent("<b>Hello world!</b><br>I am a popup.")
-    .openOn(this.map);
   }
 
   public searchWeather(name: string) {
@@ -67,5 +66,29 @@ export class AppComponent implements OnInit {
       return country[`ns2:${key}`]['#text'];
     }
     return 'NA';
+  }
+
+  public locationSearch(event: any) {
+    const { target } = event;
+    const { value } = target;
+    if (value.length > 2) {
+      this.weatherService.getLocationDetails(value).pipe(debounceTime(3000)).subscribe((response: any) => {
+        this.locations = response;
+      }, (error: any) => {
+        console.error('failed toserach lcoation : ', error);
+      })
+    }
+  }
+
+  showSelectedLocation(location: any) {
+    this.locationSearchValue = location.display_place;
+    const marker = L.marker([location.lat, location.lon]).addTo(this.map);
+    marker.bindPopup(`<b>${location.display_place}</b>`).openPopup();
+    this.map.setView([location.lat, location.lon]);
+    this.locations.length = 0;
+  }
+
+  saveComment() {
+    console.log('comment : ', this.comment);
   }
 }

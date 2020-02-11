@@ -18,7 +18,7 @@ export class WeatherService {
     });
   }
 
-  getCountryDetails(countryName: string) {
+  getCountryDetails(countryName: string): Observable<any> {
     const xml = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
                      xmlns:gs="http://spring.io/guides/gs-producing-web-service">
           <soapenv:Header/>
@@ -33,6 +33,10 @@ export class WeatherService {
       headers: { 'Content-Type': 'text/xml' },
       responseType: 'text'
     })
+  }
+
+  getLocationDetails(locationSearch: string): Observable<any> {
+    return this.http.get(`https://api.locationiq.com/v1/autocomplete.php?key=${environment.MAP_KEY}&q=${locationSearch}`);
   }
 
 }

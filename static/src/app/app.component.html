@@ -73,7 +73,18 @@
         <div class="col-sm">
           <form>
             <div class="input-group">
-              <input type="text" class="form-control" id="search" aria-describedby="search"  placeholder="Search">
+              <input type="text" class="form-control" id="search" aria-describedby="search" placeholder="Search"
+                [ngModel]="locationSearchValue" (keyup)="locationSearch($event)" (click)="locationSearch($event)"
+                name="locationSearch">
+              <div class="location-search">
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-action" *ngFor="let location of locations"
+                    (click)="showSelectedLocation(location)">
+                    <h5>{{location.display_place}}</h5>
+                    <label>{{location.display_address}}</label>
+                  </li>
+                </ul>
+              </div>
               <div class="input-group-append" id="button-addon4">
                 <button class="btn btn-secondary r-button" type="button">
                   <fa-icon [icon]="faSearch"></fa-icon>
@@ -91,6 +102,17 @@
       <div class="row">
         <div class="col-sm">
           <div id="map"></div>
+        </div>
+      </div>
+      <div class="row comment">
+        <div class="col-sm-10">
+          <div class="form-group">
+            <label for="comment">Comments</label>
+            <textarea [(ngModel)]="comment" class="form-control" id="comments" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="col-sm-10 align-right">
+          <button class="btn btn-primary" (click)="saveComment()">Save</button>
         </div>
       </div>
     </div>

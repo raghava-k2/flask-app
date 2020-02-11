@@ -5,7 +5,6 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarModule } from 'ng-sidebar'
-import { WeatherService } from './weather.service';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -20,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     SidebarModule.forRoot()
   ],
-  providers: [WeatherService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
