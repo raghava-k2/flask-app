@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { WeatherService } from './weather.service'
 import { XMLUtil } from 'src/util/XMLUtil';
@@ -19,8 +18,6 @@ export class AppComponent implements OnInit {
   countryDetails: any;
   alert: any = { show: false };
   map:any;
-
-  @ViewChild('places', { static: true }) places: GooglePlaceDirective;
 
   constructor(private weatherService: WeatherService) {
     console.log('locationQ:', L);
@@ -70,15 +67,5 @@ export class AppComponent implements OnInit {
       return country[`ns2:${key}`]['#text'];
     }
     return 'NA';
-  }
-
-  public onChange(address: any) {
-    if (address.photos && address.photos.length > 0) {
-      console.dir(address.photos[0].getUrl({ maxHeight: 500, maxWidth: 500 }));
-    }
-    console.log(address.geometry.location.lng());
-    console.log(address.geometry.location.lat());
-    console.log(address.geometry.location.toJSON());
-    console.log(address.geometry.viewport.getNorthEast());
   }
 }
