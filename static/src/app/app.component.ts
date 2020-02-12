@@ -26,17 +26,8 @@ export class AppComponent implements OnInit {
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
-    const streets = L.tileLayer.Unwired({ key: environment.MAP_KEY, scheme: "streets" });
-    this.map = L.map('map', {
-      center: [39.73, -104.99],
-      zoom: 14,
-      layers: [streets]
-    });
-    L.control.geocoder(environment.MAP_KEY).addTo(this.map);
-    L.control.scale().addTo(this.map);
-    L.control.layers({
-      "Streets": streets
-    }).addTo(this.map);
+    this.initializeMap();
+    this.fetchComment();
   }
 
   public searchWeather(name: string) {
@@ -80,6 +71,20 @@ export class AppComponent implements OnInit {
     }
   }
 
+  initializeMap() {
+    const streets = L.tileLayer.Unwired({ key: environment.MAP_KEY, scheme: "streets" });
+    this.map = L.map('map', {
+      center: [39.73, -104.99],
+      zoom: 14,
+      layers: [streets]
+    });
+    L.control.geocoder(environment.MAP_KEY).addTo(this.map);
+    L.control.scale().addTo(this.map);
+    L.control.layers({
+      "Streets": streets
+    }).addTo(this.map);
+  }
+
   showSelectedLocation(location: any) {
     this.locationSearchValue = location.display_place;
     const marker = L.marker([location.lat, location.lon]).addTo(this.map);
@@ -88,7 +93,17 @@ export class AppComponent implements OnInit {
     this.locations.length = 0;
   }
 
+  fetchComment() {
+    this.weatherService.getComment().subscribe((response: any) => {
+      this.comment = response.body;
+    }, (error: any) => {
+      console.error('failed to get comment : ', error);
+    });
+  }
+
   saveComment() {
-    console.log('comment : ', this.comment);
+    this.weatherService.updateComment(this.comment).subscribe((response) => { }, (error: any) => {
+      console.error('failed to update comment : ', error);
+    })
   }
 }

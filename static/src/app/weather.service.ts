@@ -39,4 +39,11 @@ export class WeatherService {
     return this.http.get(`https://api.locationiq.com/v1/autocomplete.php?key=${environment.MAP_KEY}&q=${locationSearch}`);
   }
 
+  getComment(): Observable<any> {
+    return this.http.get('/api/v1/comment/');
+  }
+
+  updateComment(comment: string) {
+    return this.http.put(`/api/v1/comment/`, { body: comment });
+  }
 }
