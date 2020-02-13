@@ -6,7 +6,7 @@
 //
 
 
-package io.spring.guides.gs_producing_web_service;
+package com.kvr.soap.currency;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;

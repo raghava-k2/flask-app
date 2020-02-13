@@ -8,8 +8,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import io.spring.guides.gs_producing_web_service.Country;
-import io.spring.guides.gs_producing_web_service.Currency;
+import com.kvr.soap.currency.Country;
+import com.kvr.soap.currency.Currency;
 
 @Component
 public class CurrencyRepository {
@@ -20,7 +20,7 @@ public class CurrencyRepository {
 		Country spain = new Country();
 		spain.setName("Spain");
 		spain.setCapital("Madrid");
-		spain.setCurrency(Currency.EUR);
+		spain.setCurrency(Currency.EUR);	
 		spain.setPopulation(46704314);
 
 		countries.put(spain.getName(), spain);

@@ -6,8 +6,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import io.spring.guides.gs_producing_web_service.GetCountryRequest;
-import io.spring.guides.gs_producing_web_service.GetCountryResponse;
+import com.kvr.soap.currency.GetCountryRequest;
+import com.kvr.soap.currency.GetCountryResponse;
 
 @Endpoint
 public class CurrencyEndpoint {
@@ -18,7 +18,7 @@ public class CurrencyEndpoint {
 	@Autowired
 	public CurrencyEndpoint(CurrencyRepository currencyRepository) {
 		this.currencyRepository = currencyRepository;
-	}
+	}	
 
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
 	@ResponsePayload
