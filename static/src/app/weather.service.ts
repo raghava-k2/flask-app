@@ -44,6 +44,6 @@ export class WeatherService {
   }
 
   updateComment(comment: string) {
-    return this.http.put(`/api/v1/comment/`, { body: comment });
+    return this.http.post(`/api/v1/comment/`, { body: comment });
   }
 }

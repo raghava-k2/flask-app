@@ -115,6 +115,13 @@
           <button class="btn btn-primary" (click)="saveComment()">Save</button>
         </div>
       </div>
+      <div class="row comments">
+        <div class="col-sm-10">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action" *ngFor="let comment of comments">{{comment.body}}</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </ng-sidebar-container>

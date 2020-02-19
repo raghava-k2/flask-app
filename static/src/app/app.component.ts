@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   locations: Array<any>;
   locationSearchValue: string;
   comment: string;
+  comments: Array<string>;
   alert: any = { show: false };
   map: any;
 
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.initializeMap();
-    this.fetchComment();
+    this.fetchComments();
   }
 
   public searchWeather(name: string) {
@@ -93,16 +94,18 @@ export class AppComponent implements OnInit {
     this.locations.length = 0;
   }
 
-  fetchComment() {
+  fetchComments() {
     this.weatherService.getComment().subscribe((response: any) => {
-      this.comment = response.body;
+      this.comments = response.map((e:string)=>(JSON.parse(e)));
     }, (error: any) => {
       console.error('failed to get comment : ', error);
     });
   }
 
   saveComment() {
-    this.weatherService.updateComment(this.comment).subscribe((response) => { }, (error: any) => {
+    this.weatherService.updateComment(this.comment).subscribe(() => { 
+      this.fetchComments();
+    }, (error: any) => {
       console.error('failed to update comment : ', error);
     })
   }
